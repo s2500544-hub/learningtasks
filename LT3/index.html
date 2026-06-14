@@ -1,9 +1,200 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>LT3</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Top 10 Favorite Movies</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #03080f;
+      color: #f0f6ff;
+      min-height: 100vh;
+      padding: 40px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    header h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #93c5fd;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #071525;
+      border: 1px solid #1e3a5f;
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-rank {
+      background: #1d4ed8;
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: bold;
+      padding: 4px 10px;
+    }
+
+    .card img {
+      width: 100%;
+      aspect-ratio: 2/3;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-body {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      flex: 1;
+    }
+
+    .card-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-align: center;
+      color: #93c5fd;
+    }
+
+    .card-year {
+      font-size: 0.75rem;
+      text-align: center;
+      color: #60a5fa;
+    }
+
+    .card-desc {
+      font-size: 0.78rem;
+      line-height: 1.5;
+      text-align: center;
+      color: #cbd5e1;
+      font-style: italic;
+    }
+
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 520px) {
+      .grid { grid-template-columns: 1fr; }
+      header h1 { font-size: 1.8rem; }
+    }
+  </style>
 </head>
 <body>
-Hello
+
+  <header>
+    <h1>My Top 10 Favorite Movies</h1>
+  </header>
+
+  <div class="grid" id="movieGrid"></div>
+
+  <script>
+    const movies = [
+      {
+        rank: "Top 1",
+        title: "Honeko Akabane's Bodyguards",
+        year: "2024",
+        desc: "A girl secretly protected by a group of devoted bodyguards, leading to a fun and heartwarming story of friendship and loyalty.",
+        img: "Honeko Akabane's Bodyguards.jpg"
+      },
+      {
+        rank: "Top 2",
+        title: "We Can Be Heroes",
+        year: "2020",
+        desc: "When alien invaders capture Earth's superheroes, their kids must team up and find their own powers to save the day.",
+        img: "We can be heroes.jpg"
+      },
+      {
+        rank: "Top 3",
+        title: "Swapped",
+        year: "2026",
+        desc: "An animated adventure about Ollie and Ivy, who accidentally swap bodies and must work together to save their magical Valley from danger.",
+        img: "Swapped.jpg"
+      },
+      {
+        rank: "Top 4",
+        title: "Spy Kids: Armageddon",
+        year: "2023",
+        desc: "The children of the world's greatest spies must step up to stop a powerful game developer from taking over the planet.",
+        img: "Spy Kids Armageddon.jpg"
+      },
+      {
+        rank: "Top 5",
+        title: "All Insidious Movies",
+        year: "2011–2026",
+        desc: "A chilling horror franchise following families haunted by malevolent entities from a terrifying realm known as The Further.",
+        img: "All Insidious Movies.jpg"
+      },
+      {
+        rank: "Top 6",
+        title: "All Conjuring Movies",
+        year: "2013–2025",
+        desc: "Based on real case files of paranormal investigators Ed and Lorraine Warren, this franchise delivers some of horror's most iconic scares.",
+        img: "All Conjuring Movies.jpg"
+      },
+      {
+        rank: "Top 7",
+        title: "Trolls World Tour",
+        year: "2020",
+        desc: "Queen Poppy and Branch discover six Troll tribes and must unite them to stop Queen Barb from making rock music rule them all.",
+        img: "Trolls World Tour.jpg"
+      },
+      {
+        rank: "Top 8",
+        title: "Even If This Love Disappears Tonight",
+        year: "2022",
+        desc: "A touching Japanese romance about a girl with short-term memory loss and the boy who falls in love with her each day.",
+        img: "Even If This Love Disappears Tonight.jpg"
+      },
+      {
+        rank: "Top 9",
+        title: "Talk to Me",
+        year: "2022",
+        desc: "A group of teens discover how to contact spirits using an embalmed hand, but the game quickly spirals into something far more dangerous.",
+        img: "Talk to Me.jpg"
+      },
+      {
+        rank: "Top 10",
+        title: "Terra Willy",
+        year: "2019",
+        desc: "Young Willy is stranded on an unknown planet after his spaceship is destroyed. With the help of a robot named Buck and an alien friend, Flash, he learns to survive while waiting for rescue.",
+        img: "Terra Willy.jpg"
+      }
+    ];
+
+    const grid = document.getElementById('movieGrid');
+    movies.forEach(m => {
+      grid.innerHTML += `
+        <div class="card">
+          <div class="card-rank">${m.rank}</div>
+          <img src="${m.img}" alt="${m.title}" loading="lazy" onerror="this.src='https://placehold.co/300x450/071525/60a5fa?text=No+Image'"/>
+          <div class="card-body">
+            <div class="card-title">${m.title}</div>
+            <div class="card-year">${m.year}</div>
+            <p class="card-desc">${m.desc}</p>
+          </div>
+        </div>`;
+    });
+  </script>
+
 </body>
 </html>
